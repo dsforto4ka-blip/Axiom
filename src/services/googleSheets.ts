@@ -37,6 +37,8 @@ const LOCAL_STORAGE_ORDERS_KEY = 'technopotok_orders_history_v2';
 const LOCAL_STORAGE_WEBHOOK_KEY = 'technopotok_sheets_webhook_url_v1';
 const LOCAL_STORAGE_TELEGRAM_KEY = 'technopotok_telegram_bot_cfg_v1';
 
+export const BUILTIN_DEFAULT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbydX0ruihe0pUAO7MviVfRwGRmJMD7sB7fmZQN2dFjkvILOYPT6l5uFHLiHg1Ed682C/exec';
+
 export const APPS_SCRIPT_TEMPLATE = `/**
  * ТЕХНОПОТОК — Автономный обработчик заявок 24/7 для Google Таблиц
  * Принимает заявки от клиентов в любое время суток, даже когда вы оффлайн.
@@ -102,17 +104,17 @@ function doGet(e) {
 `;
 
 /**
- * Returns saved 24/7 Webhook URL for Google Apps Script
+ * Returns saved 24/7 Webhook URL for Google Apps Script (always returns valid URL)
  */
-export const getSavedWebhookUrl = (): string | null => {
+export const getSavedWebhookUrl = (): string => {
   try {
     const url = localStorage.getItem(LOCAL_STORAGE_WEBHOOK_KEY);
     if (url && url.trim().startsWith('http')) {
       return url.trim();
     }
-    return null;
+    return BUILTIN_DEFAULT_WEBHOOK_URL;
   } catch {
-    return null;
+    return BUILTIN_DEFAULT_WEBHOOK_URL;
   }
 };
 
