@@ -1,0 +1,6 @@
+{
+  "name": "ТЕХНОПОТОК",
+  "description": "Индивидуальная сборка мощных персональных компьютеров с интеграцией базы заказов в Google Sheets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
